@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>AI DJ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="container">
+
+    <header>
+      <div class="logo-row">
+        <div class="vinyl-icon">
+          <div class="vinyl-inner"></div>
+        </div>
+        <div>
+          <h2>AI DJ</h2>
+          <p class="tagline">Powered by Gemini × YouTube</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="presets-container">
+      <button class="preset-btn" data-prompt="Acoustic morning coffee vibes, relaxing instrumental">☕ Coffee</button>
+      <button class="preset-btn" data-prompt="Heavy bass workout hype music, rap and EDM">🏋️ Gym</button>
+      <button class="preset-btn" data-prompt="Late night synthwave and retrowave for driving">🚗 Drive</button>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What's the vibe?</label>
+      <textarea id="promptInput" placeholder="e.g. Chill old English classics, rainy day indie folk..."></textarea>
+    </div>
+
+    <div class="sliders-row">
+      <div class="slider-container">
+        <label for="energySlider">
+          Energy
+          <span class="slider-value" id="energyValue">Balanced</span>
+        </label>
+        <input type="range" id="energySlider" min="1" max="100" value="50">
+        <div class="slider-labels">
+          <span>🛋️ Mellow</span>
+          <span>Energetic ⚡</span>
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="decadeSlider">
+          Decade
+          <span class="slider-value" id="decadeValue">Any Era</span>
+        </label>
+        <input type="range" id="decadeSlider" min="1970" max="2030" step="10" value="2030">
+        <div class="slider-labels">
+          <span>70s 🪩</span>
+          <span>Any 🚀</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="count-container">
+      <label class="field-label" for="songCount">Number of Songs</label>
+      <div class="count-input-row">
+        <button class="count-btn" id="countDown">−</button>
+        <input type="number" id="songCount" min="1" max="50" value="20">
+        <button class="count-btn" id="countUp">+</button>
+      </div>
+    </div>
+
+    <div class="blacklist-container">
+      <label class="field-label blacklist-label" for="blacklistInput">🚫 Blacklist</label>
+      <textarea id="blacklistInput" placeholder="e.g. No acoustic covers, skip Taylor Swift..."></textarea>
+    </div>
+
+    <div class="action-buttons">
+      <button id="generateBtn">
+        <span class="btn-icon">▶</span>
+        Create Playlist
+      </button>
+      <button id="surpriseBtn" title="Let the DJ pick a random wild vibe!">🎲</button>
+    </div>
+
+    <div id="status"></div>
+
+    <div class="footer">
+      <a href="mailto:mbongenimorey92@gmail.com">Built by Mbongeni Moyo</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

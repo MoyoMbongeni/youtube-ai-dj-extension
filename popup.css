@@ -1,0 +1,338 @@
+/* ─── Reset & Base ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:   #1DB954;
+  --green-hi: #21d15e;
+  --red:     #ff4f4f;
+  --bg:      #0d0d0d;
+  --surface: #181818;
+  --surface2:#222222;
+  --border:  #2a2a2a;
+  --text:    #f0f0f0;
+  --muted:   #888;
+  --font-ui: 'Outfit', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --radius:  10px;
+}
+
+body {
+  width: 340px;
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ─── Background grid ───────────────────────────────── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(29,185,84,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,185,84,.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 0;
+}
+
+/* ─── Container ─────────────────────────────────────── */
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ─── Header ────────────────────────────────────────── */
+header { padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Spinning vinyl */
+.vinyl-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: conic-gradient(#111 0deg 30deg, #1a1a1a 30deg 90deg, #111 90deg 150deg, #1a1a1a 150deg 210deg, #111 210deg 270deg, #1a1a1a 270deg 330deg, #111 330deg);
+  border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  animation: spin 4s linear infinite;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(29,185,84,.3);
+}
+.vinyl-inner {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+h2 {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.tagline {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-top: 3px;
+}
+
+/* ─── Preset Buttons ────────────────────────────────── */
+.presets-container {
+  display: flex;
+  gap: 6px;
+}
+
+.preset-btn {
+  flex: 1;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 4px;
+  font-size: 11px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .1s;
+  white-space: nowrap;
+}
+.preset-btn:hover {
+  background: var(--surface2);
+  border-color: var(--green);
+  transform: translateY(-1px);
+}
+.preset-btn:active { transform: translateY(0); }
+
+/* ─── Field Labels ──────────────────────────────────── */
+.field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.blacklist-label { color: var(--red); }
+
+/* ─── Textarea ──────────────────────────────────────── */
+.field-group textarea,
+textarea {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  resize: none;
+  transition: border-color .15s, box-shadow .15s;
+  display: block;
+}
+.field-group textarea { height: 64px; }
+.blacklist-container textarea { height: 44px; }
+
+textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(29,185,84,.12);
+}
+.blacklist-container textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(255,79,79,.12);
+}
+textarea::placeholder { color: var(--muted); font-size: 12px; }
+
+/* ─── Sliders side-by-side ──────────────────────────── */
+.sliders-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.slider-container label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.slider-value {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+input[type=range] {
+  width: 100%;
+  accent-color: var(--green);
+  cursor: pointer;
+  height: 4px;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ─── Song Count ────────────────────────────────────── */
+.count-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count-btn {
+  width: 30px; height: 30px;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.count-btn:hover { background: var(--green); border-color: var(--green); color: #000; }
+
+.count-container input[type=number] {
+  flex: 1;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-align: center;
+  transition: border-color .15s;
+}
+.count-container input[type=number]:focus {
+  outline: none;
+  border-color: var(--green);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+/* ─── Blacklist ─────────────────────────────────────── */
+.blacklist-container .field-label { color: var(--red); }
+.blacklist-container textarea { border-color: rgba(255,79,79,.3); }
+
+/* ─── Action Buttons ────────────────────────────────── */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#generateBtn {
+  flex: 1;
+  background: var(--green);
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 11px 16px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 4px 14px rgba(29,185,84,.25);
+}
+#generateBtn:hover {
+  background: var(--green-hi);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(29,185,84,.35);
+}
+#generateBtn:active { transform: translateY(0); }
+#generateBtn:disabled {
+  background: #2a2a2a;
+  color: var(--muted);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-icon {
+  font-size: 10px;
+  opacity: .8;
+}
+
+#surpriseBtn {
+  width: 42px; height: 42px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background .15s, transform .15s, border-color .15s;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+#surpriseBtn:hover {
+  background: var(--surface2);
+  border-color: var(--green);
+  transform: rotate(20deg) scale(1.08);
+}
+
+/* ─── Status ────────────────────────────────────────── */
+#status {
+  min-height: 20px;
+  font-size: 12px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.5;
+  transition: opacity .3s;
+  font-family: var(--font-mono);
+  padding: 0 4px;
+}
+#status .success { color: var(--green); font-weight: 700; }
+#status .error   { color: var(--red); }
+
+/* ─── Footer ────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.footer a {
+  color: var(--muted);
+  font-size: 10px;
+  text-decoration: none;
+  letter-spacing: .5px;
+  transition: color .15s;
+}
+.footer a:hover { color: var(--green); }
